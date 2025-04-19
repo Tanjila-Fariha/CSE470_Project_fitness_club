@@ -1,0 +1,1 @@
+@extends('layouts.app') {{-- This extends the layout --}}
