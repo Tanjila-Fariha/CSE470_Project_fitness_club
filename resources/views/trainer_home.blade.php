@@ -1,0 +1,1 @@
+@extends('layouts.trainerlayout') {{-- This extends the layout --}}
