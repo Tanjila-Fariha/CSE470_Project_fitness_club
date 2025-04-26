@@ -6,11 +6,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
+
 <div>
   <img src="/images/logo.png" class="absolute inset-0 object-fill w-full h-full" alt="background image" />
   <!-- Your content here -->
   <div class="absolute top-5 right-5 flex flex-row space-x-10 z-50">
     <a href="#" class="text-white text-lg font-semibold hover:underline">Get Membership</a>
+    <a href="success" class="text-white text-lg font-semibold hover:underline">Success Stories</a>
+    
+
     <a href="#" class="text-white text-lg font-semibold hover:underline">About</a>
     <a href="#" class="text-white text-lg font-semibold hover:underline">Services</a>
     <a href="#" class="text-white text-lg font-semibold hover:underline">Contact</a>
