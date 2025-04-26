@@ -3,11 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\CustomAuthenticatedSessionController;
+use App\Http\Controllers\success;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+Route::get('/success', [success::class, 'index']);
+Route::post('/success', [success::class, 'successPost'])->name('success.post');
 
 Route::get('/user_home', function () {
     return view('user_home');
