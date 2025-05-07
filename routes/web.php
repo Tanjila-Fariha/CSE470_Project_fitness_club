@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomAuthenticatedSessionController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MembershipFormController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AddGymEquipmentsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,9 @@ Route::get('/payment', function () {
 
 Route::post('/submit-payment', [PaymentController::class, 'index'])->name('payment.submit');
 
+
+Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->name('AddGymEquipments.index');
+Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
 
 Route::middleware([
     'auth:sanctum',
