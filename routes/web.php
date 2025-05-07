@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\CustomAuthenticatedSessionController;
-use App\Http\Controllers\success;
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,6 +27,19 @@ Route::get('/trainer_home', function () {
 Route::get('/redirect', [RedirectController::class, 'index'])->name('redirect');
 
 Route::get('/login', [CustomAuthenticatedSessionController::class, 'create'])->name('login');
+
+Route::get('/membership', [MembershipController::class, 'index'])->name('Membership.index');
+Route::post('/submit-form', [MembershipFormController::class, 'index'])->name('form.submit');
+
+Route::get('/payment', function () {
+    return view('payment');
+})->name('payment');
+
+Route::post('/submit-payment', [PaymentController::class, 'index'])->name('payment.submit');
+
+
+Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->name('AddGymEquipments.index');
+Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
 
 Route::middleware([
     'auth:sanctum',
