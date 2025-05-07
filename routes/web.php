@@ -13,6 +13,10 @@ Route::get('/', function () {
 
 Route::get('/success', [success::class, 'index']);
 Route::post('/success', [success::class, 'successPost'])->name('success.post');
+Route::get('/stories', [Success::class, 'showStories'])->name('success.stories');
+Route::post('/stories/{id}/like', [success::class, 'like'])->name('stories.like');
+Route::post('/stories/{id}/dislike', [success::class, 'dislike'])->name('stories.dislike');
+
 
 Route::get('/user_home', function () {
     return view('user_home');

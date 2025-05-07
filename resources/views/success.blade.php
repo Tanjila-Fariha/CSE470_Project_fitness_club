@@ -1,12 +1,19 @@
+
+
 @extends('layouts.app') {{-- Ensure this is the correct path --}}
 
 @section('content')
 
+<div class="bg-white text-center text-black z-50 pt-5 w-full min-h-[calc(100vh-4rem)]">
 
-<div class="bg-white text-center rounded-lg shadow-lg bg-cover z-50 pt-20">
-    <h3 class="text-5xl font-bold mb-4">Success Stories</h3>
+<h2 class="text-5xl font-bold mb-8 text-center text-gray-600">Success Stories</h2>
+  
+
+
+    <a href="{{ route('success.stories') }}" class="btn btn-success mb-4">Read Success Stories</a>
+
     
-    <form action="{{ route ('success.post') }}" method="POST">
+    <form action="{{ route ('success.post') }}" method="POST" >
       @csrf
       <input type="hidden" name="_token" value="{{ csrf_token() }}" />
       <!-- Name Field -->
@@ -37,7 +44,7 @@
 
 
       <!-- Blue Submit Button -->
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <input type="submit" value="Submit" class="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700 transition justify center" />
     </form>
 
 </div>
