@@ -13,7 +13,7 @@
     <a href="{{ route('Membership.index') }}" class="text-white text-lg font-semibold hover:underline">Get Membership</a>
     <a href="#" class="text-white text-lg font-semibold hover:underline">About</a>
     <a href="#" class="text-white text-lg font-semibold hover:underline">Services</a>
-    <a href="#" class="text-white text-lg font-semibold hover:underline">Contact</a>
+    <a href="#" class="text-white text-lg font-semibold hover:underline">Buy Gym Equipments</a>
   </div>
   <div class="opacity-90 z-10 justify-center items-center pt-16">
     @yield('content')
