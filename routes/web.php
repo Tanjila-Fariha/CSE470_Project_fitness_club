@@ -3,14 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\CustomAuthenticatedSessionController;
-use App\Http\Controllers\MembershipController;
-use App\Http\Controllers\MembershipFormController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\AddGymEquipmentsController;
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::get('/success', [success::class, 'index']);
+Route::post('/success', [success::class, 'successPost'])->name('success.post');
+Route::get('/stories', [Success::class, 'showStories'])->name('success.stories');
+Route::post('/stories/{id}/like', [success::class, 'like'])->name('stories.like');
+Route::post('/stories/{id}/dislike', [success::class, 'dislike'])->name('stories.dislike');
 
 
 Route::get('/user_home', function () {
