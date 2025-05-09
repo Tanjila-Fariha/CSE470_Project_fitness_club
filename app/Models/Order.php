@@ -1,20 +1,22 @@
-<?php
+<?php 
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Enrollment extends Model
+class Order extends Model
 {
     use HasFactory;
 
-    protected $table = 'workout_class_enrollments';
-
     protected $fillable = [
         'user_id',
-        'workout_class_id'
+        'delivery_address',
+        'payment_method',
+        'status',
+        'total_amount',
     ];
 
     public function user(): BelongsTo
@@ -22,8 +24,8 @@ class Enrollment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function workoutClass(): BelongsTo
+    public function orderItems(): HasMany
     {
-        return $this->belongsTo(WorkoutClass::class);
+        return $this->hasMany(OrderItem::class);
     }
 }
