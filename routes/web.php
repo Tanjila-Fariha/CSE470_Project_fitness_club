@@ -1,14 +1,21 @@
 <?php
 
+
+use App\Http\Controllers\WorkoutClassController;
+use App\Models\WorkoutClass;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\CustomAuthenticatedSessionController;
 use App\Http\Controllers\success;
 use App\Http\Controllers\AddGymEquipmentsController;
-use App\Http\Controllers\LogoutController;
+
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserClassController;
+use App\Http\Controllers\NotificationController;
+
 
 Route::get('/', function () {
-    return view('welcome');
+   return "Welcome to the Gym management system" . "<br>" . "Please Login to continue";
 });
 
 
@@ -28,7 +35,22 @@ Route::post('/submit-order', [GymEquipmentController::class, 'orderSubmit'])->na
 
 
 Route::get('/user_home', function () {
-    return view('user_home');
+    // user home controller
+      // Get all upcoming classes with enrollment count
+      $classes = WorkoutClass::query()
+      ->withCount('enrollments')
+      ->where('start_time', '>', now())
+      ->orderBy('start_time')
+      ->get();
+
+  // Get user's enrolled classes
+  $enrolledClasses = Auth::user()
+      ->enrollments()
+      ->with('workoutClass')
+      ->get()
+      ->pluck('workoutClass');
+
+      return view('user_home', compact('classes', 'enrolledClasses'));
 })->name('user_home');
 
 Route::get('/trainer_home', function () {
@@ -52,7 +74,20 @@ Route::post('/submit-payment', [PaymentController::class, 'index'])->name('payme
 Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->name('AddGymEquipments.index');
 Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
 
-Route::get('/logout', [LogoutController::class, 'index'])->name('Logout.index');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
+
+Route::prefix('trainers')->name('trainers.')->group(function () {
+    Route::get('/classes', [WorkoutClassController::class, 'index'])->name('classes.index');
+    Route::get('/classes/create', [WorkoutClassController::class, 'create'])->name('classes.create');
+    Route::post('/classes', [WorkoutClassController::class, 'store'])->name('classes.store');
+    Route::get('/classes/{workoutClass}/edit', [WorkoutClassController::class, 'edit'])->name('classes.edit');
+    Route::put('/classes/{workoutClass}', [WorkoutClassController::class, 'update'])->name('classes.update');
+    Route::delete('/classes/{workoutClass}', [WorkoutClassController::class, 'destroy'])->name('classes.destroy');
+});
 
 
 Route::middleware([
@@ -63,4 +98,18 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+// User Class Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/classes', [UserClassController::class, 'index'])->name('user.classes.index');
+    Route::post('/classes/{class}/enroll', [UserClassController::class, 'enroll'])->name('user.classes.enroll');
+    Route::delete('/classes/{class}/unenroll', [UserClassController::class, 'unenroll'])->name('user.classes.unenroll');
+    Route::get('/my-classes', [UserClassController::class, 'myClasses'])->name('user.classes.my-classes');
+    Route::post('/classes/{class}/rate', [UserClassController::class, 'rate'])->name('user.classes.rate');
+
+    // Notification Routes
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
 });

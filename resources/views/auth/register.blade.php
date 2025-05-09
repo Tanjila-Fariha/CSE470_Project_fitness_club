@@ -1,3 +1,6 @@
+@extends('layouts.guest')
+@section('title', 'Register')
+
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

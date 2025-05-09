@@ -1,5 +1,5 @@
-
 @extends('layouts.app')
+@section('title', 'Success Stories')
 
 @section('content')
 <div class="bg-black py-10 px-5 min-h-screen">
