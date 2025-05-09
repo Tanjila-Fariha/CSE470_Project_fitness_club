@@ -11,7 +11,7 @@
   <img src="/images/logo.png" class="absolute object-fill w-full h-full" alt="background image" />
   <!-- Your content here -->
   <div class="absolute top-5 right-5 flex flex-row space-x-10 z-50">
-    <a href="#" class="text-white text-lg font-semibold hover:underline">Get Membership</a>
+    <a href="{{ route('Membership.index') }}" class="text-white text-lg font-semibold hover:underline">Get Membership</a>
     <a href="success" class="text-white text-lg font-semibold hover:underline">Success Stories</a>
     <a href="#" class="text-white text-lg font-semibold hover:underline">About</a>
     <a href="#" class="text-white text-lg font-semibold hover:underline">Services</a>
@@ -38,6 +38,7 @@
         @csrf
         <button type="submit" class="text-white text-lg font-semibold hover:underline">Logout</button>
     </form>
+
   </div>
   <div class="opacity-90 z-10 justify-center items-center pt-16">
     @yield('content')

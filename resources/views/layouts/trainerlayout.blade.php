@@ -18,6 +18,7 @@
         @csrf
         <button type="submit" class="text-white text-lg font-semibold hover:underline">Logout</button>
     </form>
+
   </div>
   <div class="opacity-90 z-10 justify-center items-center pt-16">
     @yield('content')

@@ -8,9 +8,11 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\CustomAuthenticatedSessionController;
 use App\Http\Controllers\success;
 use App\Http\Controllers\AddGymEquipmentsController;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserClassController;
 use App\Http\Controllers\NotificationController;
+
 
 Route::get('/', function () {
    return "Welcome to the Gym management system" . "<br>" . "Please Login to continue";
@@ -72,6 +74,7 @@ Route::post('/submit-payment', [PaymentController::class, 'index'])->name('payme
 Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->name('AddGymEquipments.index');
 Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
 
+
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/login');
@@ -85,6 +88,7 @@ Route::prefix('trainers')->name('trainers.')->group(function () {
     Route::put('/classes/{workoutClass}', [WorkoutClassController::class, 'update'])->name('classes.update');
     Route::delete('/classes/{workoutClass}', [WorkoutClassController::class, 'destroy'])->name('classes.destroy');
 });
+
 
 Route::middleware([
     'auth:sanctum',
