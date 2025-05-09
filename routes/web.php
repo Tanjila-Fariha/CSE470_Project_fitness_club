@@ -3,15 +3,28 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\CustomAuthenticatedSessionController;
-use App\Http\Controllers\MembershipController;
-use App\Http\Controllers\MembershipFormController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\success;
 use App\Http\Controllers\AddGymEquipmentsController;
 use App\Http\Controllers\LogoutController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::get('/success', [success::class, 'index']);
+Route::post('/success', [success::class, 'successPost'])->name('success.post');
+Route::get('/stories', [Success::class, 'showStories'])->name('success.stories');
+Route::post('/stories/{id}/like', [success::class, 'like'])->name('stories.like');
+Route::post('/stories/{id}/dislike', [success::class, 'dislike'])->name('stories.dislike');
+
+use App\Http\Controllers\GymEquipmentController;
+
+Route::get('/buy-gym-equipments', [GymEquipmentController::class, 'index'])->name('buy.equipments');
+Route::get('/order-form/{id}', [GymEquipmentController::class, 'orderForm'])->name('order.form');
+Route::post('/submit-order', [GymEquipmentController::class, 'orderSubmit'])->name('order.submit');
+
 
 
 Route::get('/user_home', function () {
