@@ -7,6 +7,7 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MembershipFormController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AddGymEquipmentsController;
+use App\Http\Controllers\LogoutController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +38,8 @@ Route::post('/submit-payment', [PaymentController::class, 'index'])->name('payme
 
 Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->name('AddGymEquipments.index');
 Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
+
+Route::get('/logout', [LogoutController::class, 'index'])->name('Logout.index');
 
 
 Route::middleware([
