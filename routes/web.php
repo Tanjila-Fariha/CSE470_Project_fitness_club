@@ -50,6 +50,7 @@ Route::post('/submit-payment', [PaymentController::class, 'index'])->name('payme
 Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->name('AddGymEquipments.index');
 Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
