@@ -9,7 +9,8 @@ class RedirectController extends Controller
     public function index()
     {
         $user = Auth::user();
-        
+        $userID = $user->id;
+
         if (Trainer::where('user_id', $user->id)->exists()) {
             return redirect()->route('trainer_home');
         } else {

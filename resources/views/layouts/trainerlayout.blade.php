@@ -8,18 +8,22 @@
 <body>
 <div class="relative min-h-screen">
   <img src="/images/logo.png" class="absolute object-fill w-full h-full" alt="background image" />
-  <!-- Navigation Menu -->
+  <!-- Your content here -->
   <div class="absolute top-5 right-5 space-x-10 z-50">
-    <a href="{{ route('trainer_home') }}" class="text-white text-lg font-semibold hover:underline">Dashboard</a>
-    <a href="{{ route('trainers.classes.index') }}" class="text-white text-lg font-semibold hover:underline">My Classes</a>
-    <a href="{{ route('trainers.classes.create') }}" class="text-white text-lg font-semibold hover:underline">Create Class</a>
+    <a href="#" class="text-white text-lg font-semibold hover:underline">Get</a>
+    <a href="#" class="text-white text-lg font-semibold hover:underline">About</a>
+    <a href="#" class="text-white text-lg font-semibold hover:underline">Services</a>
     <a href="{{ route('AddGymEquipments.index') }}" class="text-white text-lg font-semibold hover:underline">Add Gym Equipments</a>
 
+
+
+    <a href="{{ route('Logout.index') }}" class="text-white text-lg font-semibold hover:underline">Logout</a>
 
   </div>
   <div class="opacity-90 z-10 justify-center items-center pt-16">
     @yield('content')
   </div>
+
 </div>
 </body>
 </html>

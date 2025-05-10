@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', 'Order Form')
 
 @section('content')
 
