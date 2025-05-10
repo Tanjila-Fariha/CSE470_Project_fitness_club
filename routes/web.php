@@ -16,10 +16,10 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MembershipFormController;
 
-Route::get('/', function () {
-    return redirect('/login');
-});
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/success', [success::class, 'index']);
 Route::post('/success', [success::class, 'successPost'])->name('success.post');
@@ -82,7 +82,7 @@ Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])-
 
 Route::post('/logout', function () {
     Auth::logout();
-    return redirect('/login');
+    return redirect('/');
 })->name('logout');
 
 Route::prefix('trainers')->name('trainers.')->group(function () {
