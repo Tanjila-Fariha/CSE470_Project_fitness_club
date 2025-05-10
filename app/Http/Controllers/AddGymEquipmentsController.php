@@ -7,11 +7,10 @@ class AddGymEquipmentsController extends Controller
 {
     public function index()
     {
-        return view('addequipments'); // Returns the membership page
+        return view('addequipments'); 
     }
     public function submit(Request $request)
     {
-     // 👈 This stops execution and prints this message
 
         $request->validate([
             'product_name' => 'required|string|max:255',

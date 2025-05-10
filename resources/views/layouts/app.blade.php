@@ -13,8 +13,6 @@
   <div class="absolute top-5 right-5 flex flex-row space-x-10 z-50">
     <a href="{{ route('Membership.index') }}" class="text-white text-lg font-semibold hover:underline">Get Membership</a>
     <a href="success" class="text-white text-lg font-semibold hover:underline">Success Stories</a>
-    <a href="#" class="text-white text-lg font-semibold hover:underline">About</a>
-    <a href="#" class="text-white text-lg font-semibold hover:underline">Services</a>
     <a href="{{ route('user.classes.index') }}" class="text-white text-lg font-semibold hover:underline">Available Classes</a>
     <!-- <a href="#" class="text-white text-lg font-semibold hover:underline">Buy Gym Equipments</a> -->
     <!-- Notification -->
