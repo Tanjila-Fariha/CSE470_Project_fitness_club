@@ -75,10 +75,7 @@ Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->n
 Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
 
 
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/login');
-})->name('logout');
+
 
 Route::prefix('trainers')->name('trainers.')->group(function () {
     Route::get('/classes', [WorkoutClassController::class, 'index'])->name('classes.index');

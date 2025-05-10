@@ -34,10 +34,7 @@
         @endif
     </a>
     <a href="{{ route('buy.equipments') }}" class="text-white text-lg font-semibold hover:underline">Buy Gym Equipments</a>
-    <form method="POST" action="{{ route('logout') }}" class="inline">
-        @csrf
-        <button type="submit" class="text-white text-lg font-semibold hover:underline">Logout</button>
-    </form>
+
 
   </div>
   <div class="opacity-90 z-10 justify-center items-center pt-16">
