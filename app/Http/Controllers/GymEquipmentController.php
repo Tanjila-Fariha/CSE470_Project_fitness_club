@@ -24,6 +24,12 @@ public function orderSubmit(Request $request) {
     SoldProduct::create($request->all());
     return redirect()->route('buy.equipments')->with('success', 'Order placed successfully!');
 }
+public function showSoldOrders()
+{
+    $orders = \App\Models\SoldProduct::with('equipment')->get();
+    return view('sold-orders', compact('orders'));
+}
+
 
 
 }

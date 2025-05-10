@@ -14,6 +14,8 @@
     <a href="{{ route('trainers.classes.index') }}" class="text-white text-lg font-semibold hover:underline">My Classes</a>
     <a href="{{ route('trainers.classes.create') }}" class="text-white text-lg font-semibold hover:underline">Create Class</a>
     <a href="{{ route('AddGymEquipments.index') }}" class="text-white text-lg font-semibold hover:underline">Add Gym Equipments</a>
+    <a href="{{ route('sold.orders') }}" class="text-white text-lg font-semibold hover:underline">View Orders</a>
+
     <form method="POST" action="{{ route('logout') }}" class="inline">
         @csrf
         <button type="submit" class="text-white text-lg font-semibold hover:underline">Logout</button>
