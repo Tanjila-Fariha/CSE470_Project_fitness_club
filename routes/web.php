@@ -12,12 +12,13 @@ use App\Http\Controllers\AddGymEquipmentsController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserClassController;
 use App\Http\Controllers\NotificationController;
-
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\MembershipFormController;
 
 Route::get('/', function () {
-   return "Welcome to the Gym management system" . "<br>" . "Please Login to continue";
+    return redirect('/login');
 });
-
 
 
 Route::get('/success', [success::class, 'index']);
@@ -34,24 +35,27 @@ Route::post('/submit-order', [GymEquipmentController::class, 'orderSubmit'])->na
 
 
 
-Route::get('/user_home', function () {
-    // user home controller
-      // Get all upcoming classes with enrollment count
-      $classes = WorkoutClass::query()
-      ->withCount('enrollments')
-      ->where('start_time', '>', now())
-      ->orderBy('start_time')
-      ->get();
 
-  // Get user's enrolled classes
-  $enrolledClasses = Auth::user()
-      ->enrollments()
-      ->with('workoutClass')
-      ->get()
-      ->pluck('workoutClass');
 
-      return view('user_home', compact('classes', 'enrolledClasses'));
+Route::middleware(['auth'])->get('/user_home', function () {
+    // get all upcoming classes
+    $classes = WorkoutClass::query()
+        ->withCount('enrollments')
+        ->where('start_time', '>', now())
+        ->orderBy('start_time')
+        ->get();
+
+    // get user's enrolled classes
+    $user = Auth::user(); // guaranteed to be non-null due to auth middleware
+
+    $enrolledClasses = $user->enrollments()
+        ->with('workoutClass')
+        ->get()
+        ->pluck('workoutClass');
+
+    return view('user_home', compact('classes', 'enrolledClasses'));
 })->name('user_home');
+
 
 Route::get('/trainer_home', function () {
     return view('trainer_home');
