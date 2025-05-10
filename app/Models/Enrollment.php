@@ -10,12 +10,7 @@ class Enrollment extends Model
 {
     use HasFactory;
 
-    protected $table = 'workout_class_enrollments';
-
-    protected $fillable = [
-        'user_id',
-        'workout_class_id'
-    ];
+    protected $fillable = ['user_id', 'workout_class_id'];
 
     public function user(): BelongsTo
     {
