@@ -13,4 +13,10 @@ class SoldProduct extends Model
         'address',
         'delivery_option'
     ];
+public function equipment()
+{
+    return $this->belongsTo(GymEquipment::class, 'equipment_id');
+}
+
+
 }

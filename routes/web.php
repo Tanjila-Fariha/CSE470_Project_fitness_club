@@ -33,6 +33,7 @@ Route::get('/buy-gym-equipments', [GymEquipmentController::class, 'index'])->nam
 Route::get('/order-form/{id}', [GymEquipmentController::class, 'orderForm'])->name('order.form');
 Route::post('/submit-order', [GymEquipmentController::class, 'orderSubmit'])->name('order.submit');
 
+Route::get('/sold-orders', [GymEquipmentController::class, 'showSoldOrders'])->name('sold.orders');
 
 
 
