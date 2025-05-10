@@ -71,6 +71,8 @@ class User extends Authenticatable
         return $this->hasMany(Enrollment::class);
     }
 
+
+
     public function trainer()
     {
         return $this->hasOne(Trainer::class);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Enrollment;
 use App\Models\WorkoutClass;
+use App\Models\User;
 
 
 class EnrollmentController extends Controller
@@ -28,4 +29,15 @@ class EnrollmentController extends Controller
     }
 
     // ... other methods for managing enrollments
+    public function getUserEnrollments($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        return response()->json($user->enrollments);
+    }
+
 }
