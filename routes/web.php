@@ -52,6 +52,19 @@ Route::post('/submit-payment', [PaymentController::class, 'index'])->name('payme
 Route::get('/addgymequipments', [AddGymEquipmentsController::class, 'index'])->name('AddGymEquipments.index');
 Route::post('/addgymequipments', [AddGymEquipmentsController::class, 'submit'])->name('AddEquipments.submit');
 
+
+
+
+
+Route::prefix('trainers')->name('trainers.')->group(function () {
+    Route::get('/classes', [WorkoutClassController::class, 'index'])->name('classes.index');
+    Route::get('/classes/create', [WorkoutClassController::class, 'create'])->name('classes.create');
+    Route::post('/classes', [WorkoutClassController::class, 'store'])->name('classes.store');
+    Route::get('/classes/{workoutClass}/edit', [WorkoutClassController::class, 'edit'])->name('classes.edit');
+    Route::put('/classes/{workoutClass}', [WorkoutClassController::class, 'update'])->name('classes.update');
+    Route::delete('/classes/{workoutClass}', [WorkoutClassController::class, 'destroy'])->name('classes.destroy');
+});
+
 Route::get('/logout', [LogoutController::class, 'index'])->name('Logout.index');
 
 
